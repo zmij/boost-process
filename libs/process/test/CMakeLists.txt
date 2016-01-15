@@ -69,6 +69,6 @@ foreach(source_file ${test_SRCS})
     set(target_name "test_${target_name}")
     add_executable(${target_name} ${source_file})
     target_link_libraries(${target_name} ${Boost_LIBRARIES})
-    add_test(NAME ${target_name} COMMAND ${target_name} sparring_partner)
+    add_test(NAME ${target_name} COMMAND ${target_name} $<TARGET_FILE:sparring_partner>)
 endforeach() 
 
