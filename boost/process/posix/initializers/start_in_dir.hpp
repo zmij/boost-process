@@ -24,7 +24,10 @@ public:
     template <class PosixExecutor>
     void on_exec_setup(PosixExecutor&) const
     {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-result"
         ::chdir(s_.c_str());
+#pragma GCC diagnostic pop
     }
 
 private:

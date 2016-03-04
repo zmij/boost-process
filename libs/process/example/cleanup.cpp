@@ -18,8 +18,10 @@ using namespace boost::process::initializers;
 int main()
 {
 //[cleanup
-    child c = execute(run_exe("test.exe"));
-    wait_for_exit(c);
+	{
+		child c = execute(run_exe("test.exe"));
+		wait_for_exit(c);
+	}
 //]
 
 //[cleanup_posix
@@ -31,7 +33,7 @@ int main()
 
 //[cleanup_windows
     {
-        child c = execute(run_exe("test.exe"));
+        child c{execute(run_exe("test.exe"))};
     }
 //]
 }

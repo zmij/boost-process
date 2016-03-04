@@ -53,6 +53,8 @@ int main()
 //[fork_execve
     const char *env[2] = { 0 };
     env[0] = "LANG=de";
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunused-result"
     execute(
         run_exe("test"),
         on_fork_setup([env](executor &e)
@@ -64,5 +66,6 @@ int main()
         on_exec_error([](executor&)
             { std::ofstream ofs("log.txt"); if (ofs) ofs << errno; })
     );
+#pragma GCC diagnostic pop
 //]
 }

@@ -17,7 +17,7 @@ struct pipe
     int source;
     int sink;
 
-    pipe(int source, int sink) : source(source), sink(sink) {}
+    pipe(int src, int snk) : source(src), sink(snk) {}
 };
 
 inline pipe make_pipe(int source, int sink)

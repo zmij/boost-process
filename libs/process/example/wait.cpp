@@ -15,6 +15,7 @@
 #   include <sys/wait.h>
 #   include <errno.h>
 #endif
+#include <iostream>
 
 using namespace boost::process;
 using namespace boost::process::initializers;
@@ -26,6 +27,7 @@ int main()
     child c = execute(run_exe("test.exe"));
     auto exit_code = wait_for_exit(c);
 //]
+    std::cerr << exit_code;
     }
 
     {
@@ -40,12 +42,12 @@ int main()
     );
 #endif
 
-    child c = execute(
+    child c{execute(
         run_exe("test.exe")
 #if defined(BOOST_POSIX_API)
         , notify_io_service(io_service)
 #endif
-    );
+    )};
 
 #if defined(BOOST_WINDOWS_API)
     DWORD exit_code;
